@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Course Enquiry</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-4">
+
+<h3>Course Enquiry</h3>
+
+<div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+
+<form th:action="@{/enquiry/submit}" th:object="${enquiry}" method="post">
+
+    <input type="hidden" th:field="*{courseName}">
+
+    <div class="mb-3">
+        <label>Name</label>
+        <input th:field="*{name}" class="form-control">
+        <small class="text-danger" th:errors="*{name}"></small>
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input th:field="*{email}" class="form-control">
+        <small class="text-danger" th:errors="*{email}"></small>
+    </div>
+
+    <div class="mb-3">
+        <label>Contact</label>
+        <input th:field="*{contact}" class="form-control">
+        <small class="text-danger" th:errors="*{contact}"></small>
+    </div>
+
+    <div class="mb-3">
+        <label>Qualification</label>
+        <select th:field="*{qualification}" class="form-select">
+            <option value="">-- Select --</option>
+            <option>BE / BTech</option>
+            <option>BSc</option>
+            <option>BCA</option>
+            <option>MCA</option>
+            <option>MBA</option>
+            <option>Diploma</option>
+            <option>Final Year Student</option>
+            <option>Others</option>
+        </select>
+        <small class="text-danger" th:errors="*{qualification}"></small>
+    </div>
+
+    <div class="mb-3">
+        <label>Message</label>
+        <textarea th:field="*{message}" class="form-control"></textarea>
+        <small class="text-danger" th:errors="*{message}"></small>
+    </div>
+
+    <button class="btn btn-primary">Submit Enquiry</button>
+</form>
+
+</body>
+</html>
